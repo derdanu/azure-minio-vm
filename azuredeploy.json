@@ -77,6 +77,19 @@
       "properties": {
         "securityRules": [
           {
+            "name": "AllowSSHPort22",
+            "properties": {
+              "priority": 100,
+              "protocol": "Tcp",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "22"
+            }
+          },
+          {
             "name": "AllowMinioPort9000",
             "properties": {
               "priority": 1000,
