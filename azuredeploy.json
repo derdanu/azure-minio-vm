@@ -124,7 +124,7 @@
       "name": "[variables('ipName')]",
       "location": "[variables('location')]",
       "properties": {
-        "publicIPAllocationMethod": "Dynamic"
+        "publicIPAllocationMethod": "Static"
       }
     },
     {
@@ -216,7 +216,7 @@
   "outputs": {
     "publicIPAddress": {
       "type": "string",
-      "value": "[reference(resourceId('Microsoft.Network/networkInterfaces', variables('nicName')), '2023-02-01', 'Full').properties.ipConfigurations[0].properties.publicIPAddress.ipAddress]"
+      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').properties.ipAddress]"
     }
   }
 }
