@@ -90,7 +90,7 @@
             }
           },
           {
-            "name": "AllowPort35271",
+            "name": "AllowMinioWebUIPort9001",
             "properties": {
               "priority": 200,
               "protocol": "Tcp",
@@ -99,13 +99,13 @@
               "sourceAddressPrefix": "*",
               "sourcePortRange": "*",
               "destinationAddressPrefix": "*",
-              "destinationPortRange": "35271"
+              "destinationPortRange": "9001"
             }
           },
           {
-            "name": "AllowMinioPort9000",
+            "name": "AllowMinioAPIPort9000",
             "properties": {
-              "priority": 1000,
+              "priority": 201,
               "protocol": "Tcp",
               "access": "Allow",
               "direction": "Inbound",
@@ -208,7 +208,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [],
-          "commandToExecute": "[concat('wget ', variables('minioDownloadUrl'), ' -O /usr/local/bin/minio && chmod +x /usr/local/bin/minio && mkdir -p /data && nohup /usr/local/bin/minio server /data > /var/log/minio.log 2>&1 &')]"
+          "commandToExecute": "[concat('wget ', variables('minioDownloadUrl'), ' -O /usr/local/bin/minio && chmod +x /usr/local/bin/minio && mkdir -p /data && nohup /usr/local/bin/minio server /data --console-address \":9001\" > /var/log/minio.log 2>&1 &')]"
         }
       }
     }
