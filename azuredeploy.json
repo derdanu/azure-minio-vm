@@ -24,9 +24,12 @@
     },
     "vmSize": {
       "type": "string",
-      "defaultValue": "Standard_A2v2",
-      "metadata": {
-        "description": "VM size"
+      "vmSize": {
+        "type": "string",
+        "defaultValue": "Standard_A2_v2",
+        "metadata": {
+          "description": "VM size"
+        }
       }
     }
   },
