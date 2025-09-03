@@ -24,14 +24,11 @@
     },
     "vmSize": {
       "type": "string",
-      "vmSize": {
-        "type": "string",
-        "defaultValue": "Standard_A2_v2",
-        "metadata": {
-          "description": "VM size"
-        }
+      "defaultValue": "Standard_A2_v2",
+      "metadata": {
+        "description": "VM size"
       }
-    }
+    }  
   },
   "variables": {
     "nsgName": "[concat(parameters('vmName'), '-nsg')]",
