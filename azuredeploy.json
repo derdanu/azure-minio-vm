@@ -90,6 +90,19 @@
             }
           },
           {
+            "name": "AllowPort35271",
+            "properties": {
+              "priority": 200,
+              "protocol": "Tcp",
+              "access": "Allow",
+              "direction": "Inbound",
+              "sourceAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationAddressPrefix": "*",
+              "destinationPortRange": "35271"
+            }
+          },
+          {
             "name": "AllowMinioPort9000",
             "properties": {
               "priority": 1000,
@@ -203,7 +216,7 @@
   "outputs": {
     "publicIPAddress": {
       "type": "string",
-      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01').ipAddress]"
+      "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').properties.ipAddress]"
     }
   }
 }
