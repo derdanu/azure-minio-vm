@@ -47,6 +47,9 @@
       "apiVersion": "2023-02-01",
       "name": "[variables('vnetName')]",
       "location": "[variables('location')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('nsgName'))]"
+      ],
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
