@@ -147,8 +147,8 @@
         "storageProfile": {
           "imageReference": {
             "publisher": "Canonical",
-            "offer": "UbuntuServer",
-            "sku": "22_04-lts-gen2",
+            "offer": "ubuntu-24_04",
+            "sku": "server",
             "version": "latest"
           },
           "osDisk": {
