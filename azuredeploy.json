@@ -222,7 +222,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [],
-          "commandToExecute": "[concat('wget ', variables('minioDownloadUrl'), ' -O /usr/local/bin/minio && chmod +x /usr/local/bin/minio && mkdir -p /data && MINIO_ROOT_USER=', parameters('minioRootUser'), ' MINIO_ROOT_PASSWORD=', parameters('minioRootPassword'), ' nohup /usr/local/bin/minio server /data > /var/log/minio.log 2>&1 &')]"
+          "commandToExecute": "[concat('wget ', variables('minioDownloadUrl'), ' -O /usr/local/bin/minio && chmod +x /usr/local/bin/minio && mkdir -p /data && MINIO_ROOT_USER=', parameters('minioRootUser'), ' MINIO_ROOT_PASSWORD=', parameters('minioRootPassword'), ' nohup /usr/local/bin/minio server /data --console-address \":9001\" > /var/log/minio.log 2>&1 &')]"
         }
       }
     }
