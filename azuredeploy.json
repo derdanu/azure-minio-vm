@@ -4,7 +4,7 @@
   "parameters": {
     "vmName": {
       "type": "string",
-      "defaultValue": "minioVm",
+      "defaultValue": "miniom",
       "metadata": {
         "description": "Name of the Virtual Machine"
       }
@@ -104,8 +104,8 @@
       "name": "[variables('nicName')]",
       "location": "[variables('location')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Network/publicIPAddresses', variables('ipName'])]",
-        "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'])]"
+        "[resourceId('Microsoft.Network/publicIPAddresses', variables('ipName'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks', variables('vnetName'))]"
       ],
       "properties": {
         "ipConfigurations": [
