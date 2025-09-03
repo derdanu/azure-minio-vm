@@ -4,7 +4,7 @@
   "parameters": {
     "vmName": {
       "type": "string",
-      "defaultValue": "miniom",
+      "defaultValue": "minioVM",
       "metadata": {
         "description": "Name of the Virtual Machine"
       }
