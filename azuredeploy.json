@@ -13,13 +13,13 @@
       "type": "string",
       "defaultValue": "azureuser",
       "metadata": {
-        "description": "Admin username"
+        "description": "SSH Admin username"
       }
     },
     "adminPassword": {
       "type": "securestring",
       "metadata": {
-        "description": "Admin password"
+        "description": "SSH Admin password"
       }
     },
     "vmSize": {
@@ -28,7 +28,21 @@
       "metadata": {
         "description": "VM size"
       }
-    }  
+    },
+    "minioRootUser": {
+      "type": "string",
+      "defaultValue": "minioadmin",
+      "metadata": {
+        "description": "MinIO root user (MINIO_ROOT_USER)"
+      }
+    },
+    "minioRootPassword": {
+      "type": "securestring",
+      "defaultValue": "minioadmin",
+      "metadata": {
+        "description": "MinIO root password (MINIO_ROOT_PASSWORD)"
+      }
+    }
   },
   "variables": {
     "nsgName": "[concat(parameters('vmName'), '-nsg')]",
@@ -208,7 +222,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [],
-          "commandToExecute": "[concat('wget ', variables('minioDownloadUrl'), ' -O /usr/local/bin/minio && chmod +x /usr/local/bin/minio && mkdir -p /data && nohup /usr/local/bin/minio server /data --console-address \":9001\" > /var/log/minio.log 2>&1 &')]"
+          "commandToExecute": "[concat('wget ', variables('minioDownloadUrl'), ' -O /usr/local/bin/minio && chmod +x /usr/local/bin/minio && mkdir -p /data && MINIO_ROOT_USER=', parameters('minioRootUser'), ' MINIO_ROOT_PASSWORD=', parameters('minioRootPassword'), ' nohup /usr/local/bin/minio server /data > /var/log/minio.log 2>&1 &')]"
         }
       }
     }
