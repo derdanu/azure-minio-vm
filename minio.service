@@ -1,0 +1,23 @@
+[Unit]
+Description=MinIO Object Storage Server
+Documentation=https://docs.min.io
+Wants=network-online.target
+After=network-online.target
+AssertFileIsExecutable=/usr/local/bin/minio
+
+[Service]
+WorkingDirectory=/data
+User=minio
+Group=minio
+ProtectProc=invisible
+EnvironmentFile=-/etc/default/minio
+ExecStartPre=/bin/bash -c "if [ -z \"${MINIO_VOLUMES}\" ]; then echo \"Variable MINIO_VOLUMES not set in /etc/default/minio\"; exit 1; fi"
+ExecStart=/usr/local/bin/minio server $MINIO_OPTS $MINIO_VOLUMES --console-address ":9001"
+Restart=always
+LimitNOFILE=65536
+TasksMax=infinity
+TimeoutStopSec=infinity
+SendSIGKILL=no
+
+[Install]
+WantedBy=multi-user.target

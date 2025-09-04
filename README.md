@@ -11,7 +11,7 @@ Click the button above to open the Azure Portal with this ARM template preloaded
 This ARM template is provided for testing and demonstration purposes only. It is intentionally simple and does not include production-grade hardening.
 
 - 🔑 Default credentials are used by default; change `minioRootUser` and `minioRootPassword` at deployment time.
-- 🧩 The VM is started with a Custom Script extension (no systemd service, limited resiliency, not persistent across reboots).
+- 🧩 The VM uses a systemd service for MinIO (persistent across reboots).
 - 🔒 TLS, backups, monitoring, and proper storage persistence are not configured.
 - 🌐 The NSG opens ports to the internet; restrict source addresses for production.
 
@@ -39,6 +39,35 @@ chmod +x ~/minio-binaries/mc
 ```
 
 Replace `<MINIO_ROOT_USER>` and `<MINIO_ROOT_PASSWORD>` with the values you provided during deployment (or the parameter defaults). Tracing will print live admin traces useful for debugging.
+
+## ⚙️ Managing the MinIO systemd service
+
+MinIO runs as a systemd service and can be managed using standard systemd commands:
+
+```bash
+# Check service status
+sudo systemctl status minio
+
+# Restart the service
+sudo systemctl restart minio
+
+# View real-time logs
+sudo journalctl -u minio -f
+
+# Stop the service
+sudo systemctl stop minio
+
+# Start the service
+sudo systemctl start minio
+
+# Disable auto-start on boot
+sudo systemctl disable minio
+
+# Enable auto-start on boot
+sudo systemctl enable minio
+```
+
+The service configuration is located at `/etc/systemd/system/minio.service` and environment variables are in `/etc/default/minio`.
 
 ## 🔁 Redirect HTTP port 80 to MinIO (optional)
 
