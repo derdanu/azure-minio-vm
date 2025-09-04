@@ -29,16 +29,40 @@ For security, restrict the source address prefixes for these rules (limit to you
 
 ## 🐛 Debugging & tracing with the MinIO client (mc)
 
-You can use the MinIO client `mc` to connect to the server and enable tracing. Example commands (run on the VM):
+You can use the MinIO client `mc` to connect to the server and enable tracing. 
+
+### Option 1: On the VM (Linux)
+
+Run these commands directly on the VM via SSH:
 
 ```bash
+# Download and setup MinIO client
 curl -L https://dl.min.io/client/mc/release/linux-amd64/mc --create-dirs -o ~/minio-binaries/mc
 chmod +x ~/minio-binaries/mc
+
+# Set up alias to local MinIO instance
 ~/minio-binaries/mc alias set myminio http://localhost:9000 <MINIO_ROOT_USER> <MINIO_ROOT_PASSWORD>
+
+# Start real-time tracing (useful for debugging API calls)
 ~/minio-binaries/mc admin trace myminio
 ```
 
-Replace `<MINIO_ROOT_USER>` and `<MINIO_ROOT_PASSWORD>` with the values you provided during deployment (or the parameter defaults). Tracing will print live admin traces useful for debugging.
+### Option 2: Remote debugging (Windows client)
+
+For remote debugging from a Windows machine, download the Windows MinIO client:
+
+```powershell
+# Download mc.exe for Windows
+Invoke-WebRequest -Uri "https://dl.min.io/client/mc/release/windows-amd64/mc.exe" -OutFile "mc.exe"
+
+# Set up alias using the public IP (replace <PUBLIC_IP> with your VM's public IP)
+.\mc.exe alias set myminio http://<PUBLIC_IP>:9000 <MINIO_ROOT_USER> <MINIO_ROOT_PASSWORD>
+
+# Start tracing
+.\mc.exe admin trace myminio
+```
+
+Replace `<PUBLIC_IP>` with your VM's public IP address (available from the deployment outputs), and `<MINIO_ROOT_USER>` and `<MINIO_ROOT_PASSWORD>` with the values you provided during deployment (or the parameter defaults). Tracing will print live admin traces useful for debugging.
 
 ## ⚙️ Managing the MinIO systemd service
 
