@@ -41,6 +41,7 @@
       "defaultValue": "minioadmin",
       "metadata": {
         "description": "MinIO root password (MINIO_ROOT_PASSWORD length should be at least 8 characters)"
+      }
     }
   },
   "variables": {
