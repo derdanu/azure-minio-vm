@@ -33,15 +33,14 @@
       "type": "string",
       "defaultValue": "minioadmin",
       "metadata": {
-        "description": "MinIO root user (MINIO_ROOT_USER)"
+        "description": "MinIO root user (MINIO_ROOT_USER length should be at least 3 characters)"
       }
     },
     "minioRootPassword": {
       "type": "securestring",
       "defaultValue": "minioadmin",
       "metadata": {
-        "description": "MinIO root password (MINIO_ROOT_PASSWORD)"
-      }
+        "description": "MinIO root password (MINIO_ROOT_PASSWORD length should be at least 8 characters)"
     }
   },
   "variables": {
