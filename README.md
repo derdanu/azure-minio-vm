@@ -21,7 +21,7 @@ Do not use this template in production without applying appropriate security and
 
 This template configures the Network Security Group to allow the following inbound ports by default:
 
-- 🔐 22 — SSH (access the VM)
+- 🔐 22 — SSH (Deny by default)
 - 🧰 9000 — MinIO server (S3-compatible API)
 - 🖥️ 9001 — MinIO web console (admin UI)
 
