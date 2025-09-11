@@ -18,6 +18,7 @@
     },
     "adminPassword": {
       "type": "securestring",
+      "defaultValue": "P@ssw0rd1234",
       "metadata": {
         "description": "SSH Admin password"
       }
