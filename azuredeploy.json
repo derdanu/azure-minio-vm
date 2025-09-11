@@ -248,7 +248,7 @@
     "minioWebUiUrl": {
       "type": "string",
       "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').properties.ipAddress, ':9001')]"
-    }
+    },
     "minioApiFQDNUrl": {
       "type": "string",
       "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').dnsSettings.fqdn, ':9000')]"
