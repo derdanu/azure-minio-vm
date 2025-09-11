@@ -53,7 +53,8 @@
     "addressPrefix": "10.0.0.0/16",
     "subnetPrefix": "10.0.0.0/24",
     "location": "[resourceGroup().location]",
-    "minioDownloadUrl": "https://dl.min.io/server/minio/release/linux-amd64/minio"
+    "minioDownloadUrl": "https://dl.min.io/server/minio/release/linux-amd64/minio",
+    "publicFQDNName": "[concat('minio', uniqueString(subscription().subscriptionId, resourceGroup().id))]"
   },
   "resources": [
     {
@@ -138,7 +139,9 @@
       "name": "[variables('ipName')]",
       "location": "[variables('location')]",
       "properties": {
-        "publicIPAllocationMethod": "Static"
+        "publicIPAllocationMethod": "Static",
+          "dnsSettings": {
+            "domainNameLabel": "[variables('publicFQDNName')]"
       }
     },
     {
@@ -234,6 +237,10 @@
       "type": "string",
       "value": "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').properties.ipAddress]"
     },
+    "Public FQDN": {
+      "type":"string",
+      "value" : "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').dnsSettings.fqdn]"
+    }, 
     "minioApiUrl": {
       "type": "string",
       "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').properties.ipAddress, ':9000')]"
@@ -241,6 +248,14 @@
     "minioWebUiUrl": {
       "type": "string",
       "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').properties.ipAddress, ':9001')]"
+    }
+    "minioApiFQDNUrl": {
+      "type": "string",
+      "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').dnsSettings.fqdn, ':9000')]"
+    },
+    "minioWebUiFQDNUrl": {
+      "type": "string",
+      "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').dnsSettings.fqdn, ':9001')]"
     }
   }
 }
