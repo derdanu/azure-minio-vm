@@ -140,8 +140,9 @@
       "location": "[variables('location')]",
       "properties": {
         "publicIPAllocationMethod": "Static",
-          "dnsSettings": {
-            "domainNameLabel": "[variables('publicFQDNName')]"
+        "dnsSettings": {
+          "domainNameLabel": "[variables('publicFQDNName')]"
+        }
       }
     },
     {
