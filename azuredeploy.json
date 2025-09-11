@@ -97,7 +97,7 @@
             "properties": {
               "priority": 100,
               "protocol": "Tcp",
-              "access": "Allow",
+              "access": "Deny",
               "direction": "Inbound",
               "sourceAddressPrefix": "*",
               "sourcePortRange": "*",
