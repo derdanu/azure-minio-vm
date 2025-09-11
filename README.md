@@ -1,10 +1,12 @@
 # MinIO on a Linux VM for testing. 🚀🧪
 
-
-
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fderdanu%2Fazure-minio-vm%2Fmaster%2Fazuredeploy.json)
 
 Click the button above to open the Azure Portal with this ARM template preloaded. Review parameters and settings, then follow the portal steps to deploy the resources to your subscription. ⚙️
+
+Once the deployment completes, open the deployment's Outputs to view all necessary information:
+
+![MinIO Deployment Outputs](azuredeploy_output.png)
 
 ## ⚠️ Warning — Not for production use
 
@@ -33,7 +35,7 @@ You can use the MinIO client `mc` to connect to the server and enable tracing.
 
 ### Option 1: On the VM (Linux)
 
-Run these commands directly on the VM via SSH:
+Run these commands directly on the VM via SSH (First allow SSH in the NSG):
 
 ```bash
 # Download and setup MinIO client
