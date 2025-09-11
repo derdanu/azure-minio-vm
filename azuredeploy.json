@@ -241,7 +241,7 @@
     },
     "Public FQDN": {
       "type":"string",
-      "value" : "[reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').dnsSettings.fqdn]"
+      "value" : "[reference(variables('ipName')).dnsSettings.fqdn]"
     }, 
     "minioApiUrl": {
       "type": "string",
@@ -253,11 +253,11 @@
     },
     "minioApiFQDNUrl": {
       "type": "string",
-      "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').dnsSettings.fqdn, ':9000')]"
+      "value": "[concat('http://', reference(variables('ipName')).dnsSettings.fqdn, ':9000')]"
     },
     "minioWebUiFQDNUrl": {
       "type": "string",
-      "value": "[concat('http://', reference(resourceId('Microsoft.Network/publicIPAddresses', variables('ipName')), '2023-02-01', 'Full').dnsSettings.fqdn, ':9001')]"
+      "value": "[concat('http://', reference(variables('ipName')).dnsSettings.fqdn, ':9001')]"
     }
   }
 }
